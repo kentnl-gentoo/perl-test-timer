@@ -1,6 +1,6 @@
 package Test::Timer::TimeoutException;
 
-# $Id: TimeoutException.pm,v 1.2 2007-03-05 21:17:44 jonasbn Exp $
+# $Id: TimeoutException.pm,v 1.2 2007/03/05 21:17:44 jonasbn Exp $
 
 use strict;
 use warnings;

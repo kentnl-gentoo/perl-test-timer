@@ -1,4 +1,4 @@
-# $Id: time_nok.t,v 1.1 2007-03-04 21:54:12 jonasbn Exp $
+# $Id: time_nok.t,v 1.1 2007/03/04 21:54:12 jonasbn Exp $
 
 use strict;
 use Test::More tests => 3;

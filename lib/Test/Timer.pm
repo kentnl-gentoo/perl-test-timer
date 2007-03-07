@@ -1,6 +1,6 @@
 package Test::Timer;
 
-# $Id: Timer.pm,v 1.7 2007-03-07 08:13:09 jonasbn Exp $
+# $Id: Timer.pm,v 1.7 2007/03/07 08:13:09 jonasbn Exp $
 
 use warnings;
 use strict;
