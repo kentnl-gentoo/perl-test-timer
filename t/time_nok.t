@@ -1,12 +1,14 @@
-# $Id: time_nok.t,v 1.1 2007/03/04 21:54:12 jonasbn Exp $
+# $Id: time_nok.t,v 1.4 2007/03/10 19:29:39 jonasbn Exp $
 
 use strict;
 use Test::More tests => 3;
 
-BEGIN { use_ok('Test::Timer'); };
+use Test::Exception;
+
+BEGIN { use_ok('Test::Timer'); }
 
 time_nok( sub { sleep(2); }, 1, 'Failing test' );
 
 $Test::Timer::alert = 6;
 
-time_nok( sub { sleep(4); }, [0, 2], 'Failing test' ); 
+dies_ok { time_nok(sub { sleep(1); } ); } 'Dying test';

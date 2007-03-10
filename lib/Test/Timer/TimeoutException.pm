@@ -1,26 +1,25 @@
 package Test::Timer::TimeoutException;
 
-# $Id: TimeoutException.pm,v 1.2 2007/03/05 21:17:44 jonasbn Exp $
+# $Id: TimeoutException.pm,v 1.4 2007/03/10 19:29:39 jonasbn Exp $
 
 use strict;
 use warnings;
 use vars qw($VERSION);
 
 use base 'Error';
-use overload ('""' => 'stringify');
+use overload ( '""' => 'stringify' );
 
 $VERSION = '0.01';
 
-sub new
-{
+sub new {
     my $self = shift;
     my $text = '' . shift;
     my @args = ();
 
     local $Error::Depth = $Error::Depth + 1;
 
-    $self = $self->SUPER::new(-text => $text, @args);
-    
+    $self = $self->SUPER::new( -text => $text, @args );
+
     return $self;
 }
 
@@ -103,7 +102,7 @@ This class is tested as part of L<Test::Timer>
 
 =head1 LICENSE AND COPYRIGHT
 
-Date-Holidays and related modules are (C) by Jonas B. Nielsen,
+Test::Timer and related modules are (C) by Jonas B. Nielsen,
 (jonasbn) 2007
 
 Test::Timer and related modules are released under the artistic
