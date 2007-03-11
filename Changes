@@ -1,8 +1,21 @@
 Revision history for Test-Timer
 
-# $Id: Changes,v 1.4 2007/03/10 19:29:39 jonasbn Exp $
+# $Id: Changes,v 1.6 2007/03/11 09:21:16 jonasbn Exp $
 
-0.02
+0.03 released 11. March 2007, update not necessary
+
+- Removed version number from README
+
+- Read up on the Test::Perl::Critic documentation and updated my Perl::Critic
+  test (t/critic.t), introducing t/perlcriticrc and added a few of the
+  requirements needed by this test to build requirements
+
+- Moved Test::Tester to general requirements from build requirements
+
+- Minor changes to POD
+
+
+0.02 released 10. March 2007, update necessary
 
 - Removed support for reference to arrays as second parameter to time_nok,
   time_ok, time_almost and time_atleast - time_between is recommended
@@ -22,6 +35,6 @@ Revision history for Test-Timer
 - Ran all code through perltidy
 
 
-0.01    Thu Mar  1 13:02:04 CET 2007
-        First version, released on an unsuspecting world.
+0.01 Initial release 1. March 2007
 
+- First version, released on an unsuspecting world.
