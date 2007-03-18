@@ -1,6 +1,13 @@
 Revision history for Test-Timer
 
-# $Id: Changes,v 1.6 2007/03/11 09:21:16 jonasbn Exp $
+# $Id: Changes,v 1.8 2007/03/18 10:06:38 jonasbn Exp $
+
+0.04 released Sun Mar 18 2007, update not necessary
+
+- Added creation of traditional Makefile.PL to Build.PL
+
+- Added Makefile.PL to MANIFEST
+
 
 0.03 released 11. March 2007, update not necessary
 

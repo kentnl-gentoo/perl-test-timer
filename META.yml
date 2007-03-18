@@ -1,6 +1,6 @@
 ---
 name: Test-Timer
-version: 0.03
+version: 0.04
 author:
   - 'jonasbn <jonasbn@cpan.org>'
 abstract: a test module to test/assert response times
@@ -26,7 +26,7 @@ build_requires:
 provides:
   Test::Timer:
     file: lib/Test/Timer.pm
-    version: 0.03
+    version: 0.04
   Test::Timer::TimeoutException:
     file: lib/Test/Timer/TimeoutException.pm
     version: 0.01
