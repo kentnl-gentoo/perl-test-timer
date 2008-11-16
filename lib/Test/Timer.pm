@@ -1,28 +1,26 @@
 package Test::Timer;
 
-# $Id: Timer.pm,v 1.14 2007/03/18 10:06:38 jonasbn Exp $
+# $Id: Timer.pm,v 1.15 2008-09-09 19:19:03 jonasbn Exp $
 
 use warnings;
 use strict;
-
-require Exporter;
 
 use vars qw($VERSION @ISA @EXPORT);
 use Benchmark;
 use Carp qw(croak);
 use Error qw(:try);
 use Test::Builder;
+use base 'Test::Builder::Module';
 
 #own
 use Test::Timer::TimeoutException;
 
-@ISA    = qw(Exporter);
 @EXPORT = qw(time_ok time_nok time_atleast time_atmost time_between);
 
-$VERSION = '0.04';
+$VERSION = '0.05';
 
 my $test  = Test::Builder->new;
-our $alarm = 2;
+our $alarm = 2; #default alarm
 
 sub time_ok {
     return time_atmost(@_);
@@ -97,13 +95,13 @@ sub _runtest {
     my $within = 0;
     
     try {
-        
+
+        my $timestring = _benchmark( $code, $upperthreshold );
+        my $time = _timestring2time($timestring);
+
         if ( defined $lowerthreshold && defined $upperthreshold ) {
 
-            my $timestring = _benchmark( $code, $upperthreshold );
-            my $time = _timestring2time($timestring);
-
-            if ( $time > $lowerthreshold && $time < $upperthreshold ) {
+            if ( $time >= $lowerthreshold && $time <= $upperthreshold ) {
                 $within = 1;
             } else {
                 $within = 0;
@@ -163,7 +161,6 @@ sub _runtest_atleast {
     return $exceed; 
 }
 
-
 sub _benchmark {
     my ( $code, $threshold ) = @_;
 
@@ -200,18 +197,6 @@ sub _timestring2time {
     return $time;
 }
 
-sub import {
-    my ($self) = shift;
-    my $pack = caller;
-
-    $test->exported_to($pack);
-    $test->plan(@_);
-
-    $self->export_to_level( 1, $self, @EXPORT );
-
-    return;
-}
-
 1;
 
 __END__
@@ -243,7 +228,7 @@ The documentation in this module describes version 0.04 of Test::Timer
     #Will fail after 5 (threshold) + 2 seconds (default alarm)
     time_ok( sub { while(1) { sleep(1); } }, 5, 'threshold of one second');
 
-    $test::Timer::alarm = 6
+    $test::Timer::alarm = 6 #default 2 seconds
 
     #Will fail after 5 (threshold) + 6 seconds (specified alarm)
     time_ok( sub { while(1) { sleep(1); } }, 5, 'threshold of one second');
@@ -521,8 +506,9 @@ L<http://search.cpan.org/dist/Test-Timer>
 =item Gabor Szabo (GZABO), suggestion for specification of interval thresholds
 even though this was obsoleted by the later introduced time_between
 
-=item Paul Leonerd Evans (PEVANS), suggestions for time_atleast and time_atmost
-and the handling of $SIG{ALRM}.
+=item Paul Leonerd Evans (PEVANS), suggestions for time_atleast and time_atmost and the handling of $SIG{ALRM}.
+
+= brian d foy (BDFOY), for patch to L</_run_test>
 
 =back
 
