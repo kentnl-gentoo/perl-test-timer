@@ -1,12 +1,28 @@
 ---
-name: Test-Timer
-version: 0.05
+abstract: 'a test module to test/assert response times'
 author:
   - 'jonasbn <jonasbn@cpan.org>'
-abstract: a test module to test/assert response times
+build_requires:
+  English: 0
+  File::Spec: 0
+  Test::Exception: 0
+  Test::More: 0
+configure_requires:
+  Module::Build: 0.40
+dynamic_config: 1
+generated_by: 'Module::Build version 0.4005, CPAN::Meta::Converter version 2.131560'
 license: artistic
-resources:
-  license: http://opensource.org/licenses/artistic-license.php
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+name: Test-Timer
+provides:
+  Test::Timer:
+    file: lib/Test/Timer.pm
+    version: 0.06
+  Test::Timer::TimeoutException:
+    file: lib/Test/Timer/TimeoutException.pm
+    version: 0.01
 requires:
   Benchmark: 0
   Carp: 0
@@ -14,19 +30,6 @@ requires:
   Test::Builder: 0
   Test::Builder::Module: 0
   Test::Tester: 0
-build_requires:
-  English: 0
-  File::Spec: 0
-  Test::Exception: 0
-  Test::More: 0
-provides:
-  Test::Timer:
-    file: lib/Test/Timer.pm
-    version: 0.05
-  Test::Timer::TimeoutException:
-    file: lib/Test/Timer/TimeoutException.pm
-    version: 0.01
-generated_by: Module::Build version 0.280801
-meta-spec:
-  url: http://module-build.sourceforge.net/META-spec-v1.2.html
-  version: 1.2
+resources:
+  license: http://www.perlfoundation.org/artistic_license_1_0
+version: 0.06
