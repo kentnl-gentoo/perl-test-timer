@@ -4,7 +4,7 @@
       "jonasbn <jonasbn@cpan.org>"
    ],
    "dynamic_config" : 1,
-   "generated_by" : "Module::Build version 0.4005, CPAN::Meta::Converter version 2.131560",
+   "generated_by" : "Module::Build version 0.4005, CPAN::Meta::Converter version 2.132830",
    "license" : [
       "artistic_1"
    ],
@@ -24,7 +24,7 @@
       },
       "configure" : {
          "requires" : {
-            "Module::Build" : "0.40"
+            "Module::Build" : "0.4"
          }
       },
       "runtime" : {
@@ -34,25 +34,36 @@
             "Error" : "0",
             "Test::Builder" : "0",
             "Test::Builder::Module" : "0",
-            "Test::Tester" : "0"
+            "Test::Tester" : "0",
+            "perl" : "v5.10.0"
          }
       }
    },
    "provides" : {
       "Test::Timer" : {
          "file" : "lib/Test/Timer.pm",
-         "version" : "0.07"
+         "version" : "0.08"
       },
       "Test::Timer::TimeoutException" : {
          "file" : "lib/Test/Timer/TimeoutException.pm",
-         "version" : "0.01"
+         "version" : "0.08"
       }
    },
    "release_status" : "stable",
    "resources" : {
+      "bugtracker" : {
+         "web" : "http://rt.cpan.org/NoAuth/Bugs.html?Dist=Test-Timer"
+      },
+      "homepage" : "http://logiclab.jira.com/wiki/display/TESTT/Home",
       "license" : [
          "http://www.perlfoundation.org/artistic_license_1_0"
-      ]
+      ],
+      "repository" : {
+         "url" : "https://github.com/jonasbn/testt"
+      },
+      "x_ProjectChangelog" : "http://logiclab.jira.com/browse/TESTT#selectedTab=com.atlassian.jira.plugin.system.project%3Achangelog-panel",
+      "x_ProjectSite" : "http://logicLAB.jira.com/browse/TESTT",
+      "x_ProjectWiki" : "http://logiclab.jira.com/wiki/display/TESTT/Home"
    },
-   "version" : "0.07"
+   "version" : "0.08"
 }

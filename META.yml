@@ -8,9 +8,9 @@ build_requires:
   Test::Exception: 0
   Test::More: 0
 configure_requires:
-  Module::Build: 0.40
+  Module::Build: 0.4
 dynamic_config: 1
-generated_by: 'Module::Build version 0.4005, CPAN::Meta::Converter version 2.131560'
+generated_by: 'Module::Build version 0.4005, CPAN::Meta::Converter version 2.132830'
 license: artistic
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -19,10 +19,10 @@ name: Test-Timer
 provides:
   Test::Timer:
     file: lib/Test/Timer.pm
-    version: 0.07
+    version: 0.08
   Test::Timer::TimeoutException:
     file: lib/Test/Timer/TimeoutException.pm
-    version: 0.01
+    version: 0.08
 requires:
   Benchmark: 0
   Carp: 0
@@ -30,6 +30,13 @@ requires:
   Test::Builder: 0
   Test::Builder::Module: 0
   Test::Tester: 0
+  perl: v5.10.0
 resources:
+  ProjectChangelog: http://logiclab.jira.com/browse/TESTT#selectedTab=com.atlassian.jira.plugin.system.project%3Achangelog-panel
+  ProjectSite: http://logicLAB.jira.com/browse/TESTT
+  ProjectWiki: http://logiclab.jira.com/wiki/display/TESTT/Home
+  bugtracker: http://rt.cpan.org/NoAuth/Bugs.html?Dist=Test-Timer
+  homepage: http://logiclab.jira.com/wiki/display/TESTT/Home
   license: http://www.perlfoundation.org/artistic_license_1_0
-version: 0.07
+  repository: https://github.com/jonasbn/testt
+version: 0.08
