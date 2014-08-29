@@ -4,7 +4,7 @@
       "jonasbn <jonasbn@cpan.org>"
    ],
    "dynamic_config" : 1,
-   "generated_by" : "Module::Build version 0.4005, CPAN::Meta::Converter version 2.132830",
+   "generated_by" : "Module::Build version 0.4205",
    "license" : [
       "artistic_1"
    ],
@@ -42,11 +42,11 @@
    "provides" : {
       "Test::Timer" : {
          "file" : "lib/Test/Timer.pm",
-         "version" : "0.08"
+         "version" : "0.09"
       },
       "Test::Timer::TimeoutException" : {
          "file" : "lib/Test/Timer/TimeoutException.pm",
-         "version" : "0.08"
+         "version" : "0.09"
       }
    },
    "release_status" : "stable",
@@ -61,9 +61,9 @@
       "repository" : {
          "url" : "https://github.com/jonasbn/testt"
       },
-      "x_ProjectChangelog" : "http://logiclab.jira.com/browse/TESTT#selectedTab=com.atlassian.jira.plugin.system.project%3Achangelog-panel",
-      "x_ProjectSite" : "http://logicLAB.jira.com/browse/TESTT",
-      "x_ProjectWiki" : "http://logiclab.jira.com/wiki/display/TESTT/Home"
+      "x_projectChangelog" : "http://logiclab.jira.com/browse/TESTT#selectedTab=com.atlassian.jira.plugin.system.project%3Achangelog-panel",
+      "x_projectSite" : "http://logicLAB.jira.com/browse/TESTT",
+      "x_projectWiki" : "http://logiclab.jira.com/wiki/display/TESTT/Home"
    },
-   "version" : "0.08"
+   "version" : "0.09"
 }

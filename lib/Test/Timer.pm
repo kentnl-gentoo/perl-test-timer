@@ -17,7 +17,7 @@ use Test::Timer::TimeoutException;
 
 @EXPORT = qw(time_ok time_nok time_atleast time_atmost time_between);
 
-$VERSION = '0.08';
+$VERSION = '0.09';
 
 my $test  = Test::Builder->new;
 our $alarm = 2; #default alarm
@@ -201,13 +201,23 @@ sub _timestring2time {
 
 __END__
 
+=pod
+
+=begin markdown
+
+[![CPAN version](https://badge.fury.io/pl/Test-Timer.svg)](http://badge.fury.io/pl/Test-Timer)
+[![Build Status](https://travis-ci.org/jonasbn/testt.svg?branch=master)](https://travis-ci.org/jonasbn/testt)
+[![Coverage Status](https://coveralls.io/repos/jonasbn/testt/badge.png)](https://coveralls.io/r/jonasbn/testt)
+
+=end markdown
+
 =head1 NAME
 
 Test::Timer - a test module to test/assert response times
 
 =head1 VERSION
 
-The documentation in this module describes version 0.08 of Test::Timer
+The documentation in this module describes version 0.09 of Test::Timer
 
 =head1 SYNOPSIS
 
