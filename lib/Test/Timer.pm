@@ -17,7 +17,7 @@ use Test::Timer::TimeoutException;
 
 @EXPORT = qw(time_ok time_nok time_atleast time_atmost time_between);
 
-$VERSION = '0.09';
+$VERSION = '0.10';
 
 my $test  = Test::Builder->new;
 our $alarm = 2; #default alarm
@@ -572,7 +572,10 @@ You can also look for information at:
 =item * Gabor Szabo (GZABO), suggestion for specification of interval thresholds
 even though this was obsoleted by the later introduced time_between
 
-=item * Paul Leonerd Evans (PEVANS), suggestions for time_atleast and time_atmost and the handling of $SIG{ALRM}.
+=item * Paul Leonerd Evans (PEVANS), suggestions for time_atleast and time_atmost 
+and the handling of $SIG{ALRM}. Also bug report for addressing issue with Debian 
+packagin resulting in release 0.10
+
 
 =item * brian d foy (BDFOY), for patch to L<_run_test|/_run_test>
 
@@ -581,13 +584,9 @@ even though this was obsoleted by the later introduced time_between
 =head1 LICENSE AND COPYRIGHT
 
 Test::Timer and related modules are (C) by Jonas B. Nielsen,
-(jonasbn) 2007-2014
+(jonasbn) 2007-2015
 
-Test::Timer and related modules are released under the artistic
-license
-
-The distribution is licensed under the Artistic License, as specified
-by the Artistic file in the standard perl distribution
-(http://www.perl.com/language/misc/Artistic.html).
+Test::Timer and related modules are released under the Artistic
+License 2.0
 
 =cut
