@@ -14,7 +14,7 @@ configure_requires:
   ExtUtils::MakeMaker: '0'
   Module::Build: '0.30'
 dynamic_config: 0
-generated_by: 'Dist::Zilla version 5.020, CPAN::Meta::Converter version 2.142060'
+generated_by: 'Dist::Zilla version 5.037, CPAN::Meta::Converter version 2.150005'
 license: artistic_2
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -27,8 +27,8 @@ requires:
   Error: '0'
   Test::Builder: '0'
   Test::Builder::Module: '0'
-  perl: '5.012'
+  perl: '5.006'
 resources:
   bugtracker: https://github.com/jonasbn/testt/issues
   repository: git://github.com/jonasbn/testt.git
-version: '0.10'
+version: '0.11'
