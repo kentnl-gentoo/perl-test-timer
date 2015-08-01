@@ -19,7 +19,7 @@ my %module_build_args = (
     "Jonas B. Nielsen <jonasbn\@cpan.org>"
   ],
   "dist_name" => "Test-Timer",
-  "dist_version" => "0.11",
+  "dist_version" => "0.12",
   "license" => "artistic_2",
   "module_name" => "Test::Timer",
   "recommends" => {},

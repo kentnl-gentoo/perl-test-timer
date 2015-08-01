@@ -20,6 +20,13 @@ meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
   version: '1.4'
 name: Test-Timer
+provides:
+  Test::Timer:
+    file: lib/Test/Timer.pm
+    version: '0.12'
+  Test::Timer::TimeoutException:
+    file: lib/Test/Timer/TimeoutException.pm
+    version: '0.12'
 requires:
   Benchmark: '0'
   Carp: '0'
@@ -31,4 +38,4 @@ requires:
 resources:
   bugtracker: https://github.com/jonasbn/testt/issues
   repository: git://github.com/jonasbn/testt.git
-version: '0.11'
+version: '0.12'
