@@ -1,7 +1,5 @@
 package Test::Timer;
 
-# $Id: Timer.pm,v 1.15 2008-09-09 19:19:03 jonasbn Exp $
-
 use warnings;
 use strict;
 
@@ -17,7 +15,7 @@ use Test::Timer::TimeoutException;
 
 @EXPORT = qw(time_ok time_nok time_atleast time_atmost time_between);
 
-$VERSION = '0.12';
+$VERSION = '0.13';
 
 my $test  = Test::Builder->new;
 our $alarm = 2; #default alarm
@@ -213,11 +211,11 @@ __END__
 
 =head1 NAME
 
-Test::Timer - a test module to test/assert response times
+Test::Timer - test module to test/assert response times
 
 =head1 VERSION
 
-The documentation in this module describes version 0.12 of Test::Timer
+The documentation in this module describes version 0.13 of Test::Timer
 
 =head1 SYNOPSIS
 
@@ -255,7 +253,7 @@ The key features are subroutines to assert or test the following:
 
 =item * that a given piece of code does not exceed a specified time limit
 
-=item * that a given piece of code takes longer than a specifed time limit 
+=item * that a given piece of code takes longer than a specified time limit 
 and does not exceed another
 
 =back
@@ -407,7 +405,7 @@ from L<time_between|/time_between>, it is the diagnosis if the execution of the 
 not between the specified lower and upper thresholds.
 
 =item * Insufficient parameters, this is the message if a specified test is not
-provided with the sufficent number of parameters, consult this documentation
+provided with the sufficient number of parameters, consult this documentation
 and correct accordingly.
 
 =item * Execution exceeded threshold and timed out, the exception is thrown if
@@ -478,7 +476,7 @@ Set TEST_CRITIC to enable L<Test::Perl::Critic> test in F<t/critic.t>
 
 =head2 CONTINUOUS INTEGRATION
 
-This distribution uses Travis and Jenkins for continuous integration testing, the
+This distribution uses Travis for continuous integration testing, the
 Travis reports are public available.
 
 =for HTML <a href="https://travis-ci.org/jonasbn/testt"><img src="https://travis-ci.org/jonasbn/testt.png?branch=master"></a>
@@ -549,10 +547,6 @@ You can also look for information at:
 
 =over
 
-=item * L<Distribution homepage and Wiki (Confluence)|http://logiclab.jira.com/wiki/display/TESTT/Home>
-
-=item * L<Project Site (Jira)|http://logicLAB.jira.com/browse/TESTT>
-
 =item * L<Github Repository|https://github.com/jonasbn/testt>
 
 =back
@@ -568,6 +562,8 @@ You can also look for information at:
 =head1 ACKNOWLEDGEMENTS
 
 =over
+
+=item * Nick Morrott, PR #5
 
 =item * Bartosz Jakubski, reporting issue #3
 
@@ -585,7 +581,7 @@ packaging resulting in release 0.10
 =head1 LICENSE AND COPYRIGHT
 
 Test::Timer and related modules are (C) by Jonas B. Nielsen,
-(jonasbn) 2007-2015
+(jonasbn) 2007-2016
 
 Test::Timer and related modules are released under the Artistic
 License 2.0

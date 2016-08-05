@@ -1,7 +1,5 @@
 package Test::Timer::TimeoutException;
 
-# $Id: TimeoutException.pm,v 1.5 2007-03-11 07:23:56 jonasbn Exp $
-
 use strict;
 use warnings;
 use vars qw($VERSION);
@@ -103,7 +101,7 @@ This class is tested as part of L<Test::Timer>
 =head1 LICENSE AND COPYRIGHT
 
 Test::Timer and related modules are (C) by Jonas B. Nielsen,
-(jonasbn) 2007-2015
+(jonasbn) 2007-2016
 
 Test::Timer and related modules are released under the Artistic
 License 2.0
