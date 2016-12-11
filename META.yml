@@ -23,10 +23,10 @@ name: Test-Timer
 provides:
   Test::Timer:
     file: lib/Test/Timer.pm
-    version: '0.14'
+    version: '0.15'
   Test::Timer::TimeoutException:
     file: lib/Test/Timer/TimeoutException.pm
-    version: '0.12'
+    version: '0.15'
 requires:
   Benchmark: '0'
   Carp: '0'
@@ -38,5 +38,5 @@ requires:
 resources:
   bugtracker: https://github.com/jonasbn/testt/issues
   repository: git://github.com/jonasbn/testt.git
-version: '0.14'
+version: '0.15'
 x_serialization_backend: 'YAML::Tiny version 1.67'
