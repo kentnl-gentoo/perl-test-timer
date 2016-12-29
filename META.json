@@ -60,25 +60,25 @@
    "provides" : {
       "Test::Timer" : {
          "file" : "lib/Test/Timer.pm",
-         "version" : "0.15"
+         "version" : "0.16"
       },
       "Test::Timer::TimeoutException" : {
          "file" : "lib/Test/Timer/TimeoutException.pm",
-         "version" : "0.15"
+         "version" : "0.16"
       }
    },
    "release_status" : "stable",
    "resources" : {
       "bugtracker" : {
-         "web" : "https://github.com/jonasbn/testt/issues"
+         "web" : "https://github.com/jonasbn/perl-test-timer/issues"
       },
       "repository" : {
          "type" : "git",
-         "url" : "git://github.com/jonasbn/testt.git",
-         "web" : "https://github.com/jonasbn/testt"
+         "url" : "git://github.com/jonasbn/perl-test-timer.git",
+         "web" : "https://github.com/jonasbn/perl-test-timer"
       }
    },
-   "version" : "0.15",
+   "version" : "0.16",
    "x_serialization_backend" : "Cpanel::JSON::XS version 3.0115"
 }
 

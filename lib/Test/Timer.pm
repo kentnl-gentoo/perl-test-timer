@@ -15,7 +15,7 @@ use Test::Timer::TimeoutException;
 
 @EXPORT = qw(time_ok time_nok time_atleast time_atmost time_between);
 
-$VERSION = '0.15';
+$VERSION = '0.16';
 
 my $test  = Test::Builder->new;
 our $alarm = 2; #default alarm
@@ -163,7 +163,7 @@ sub _benchmark {
     my ( $code, $threshold ) = @_;
 
     my $timestring;
-    my $alarm = $alarm + $threshold;
+    my $alarm = $alarm + ($threshold || 0);
 
     try {
         local $SIG{ALRM} = sub {
@@ -215,7 +215,7 @@ Test::Timer - test module to test/assert response times
 
 =head1 VERSION
 
-The documentation in this module describes version 0.15 of Test::Timer
+The documentation in this module describes version 0.16 of Test::Timer
 
 =head1 SYNOPSIS
 
@@ -372,7 +372,7 @@ alarm.
 =head2 _timestring2time
 
 This is the method extracts the seconds from benchmarks timestring and returns
-it and an integer.
+it as an integer.
 
 It takes the timestring from L<_benchmark|/_benchmark> (L<Benchmark>) and returns the seconds
 part.
@@ -515,10 +515,6 @@ your bug as I make changes.
 
 =over
 
-=item * RT mail interface: C<bug-test-timer at rt.cpan.org>
-
-=item * RT web interface: L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Test-Timer>
-
 =item * Github: L<https://github.com/jonasbn/testt/issues>
 
 =back
@@ -538,8 +534,6 @@ You can also look for information at:
 =item * L<CPAN Ratings|http://cpanratings.perl.org/d/Test-Timer>
 
 =item * L<MetaCPAN|https://metacpan.org/pod/Test-Timer>
-
-=item * L<Search CPAN|http://search.cpan.org/dist/Test-Timer>
 
 =back
 
@@ -562,6 +556,8 @@ You can also look for information at:
 =head1 ACKNOWLEDGEMENTS
 
 =over
+
+=item * p-alik, PR #4 eliminating warnings during test
 
 =item * Kent Fredric, PR #7 addressing file permissions
 
