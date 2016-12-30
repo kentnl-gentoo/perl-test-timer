@@ -4,7 +4,7 @@
       "Jonas B. Nielsen <jonasbn@cpan.org>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 6.006, CPAN::Meta::Converter version 2.150005",
+   "generated_by" : "Dist::Zilla version 6.005, CPAN::Meta::Converter version 2.150005",
    "license" : [
       "artistic_2"
    ],
@@ -51,7 +51,7 @@
             "File::Spec" : "0",
             "IO::Handle" : "0",
             "IPC::Open3" : "0",
-            "Test::Exception" : "0",
+            "Test::Fatal" : "0",
             "Test::More" : "0",
             "Test::Tester" : "0"
          }
@@ -60,25 +60,22 @@
    "provides" : {
       "Test::Timer" : {
          "file" : "lib/Test/Timer.pm",
-         "version" : "0.16"
+         "version" : "0.17"
       },
       "Test::Timer::TimeoutException" : {
          "file" : "lib/Test/Timer/TimeoutException.pm",
-         "version" : "0.16"
+         "version" : "0.17"
       }
    },
    "release_status" : "stable",
    "resources" : {
-      "bugtracker" : {
-         "web" : "https://github.com/jonasbn/perl-test-timer/issues"
-      },
+      "homepage" : "https://jonasbn.github.io/perl-test-timer/",
       "repository" : {
          "type" : "git",
-         "url" : "git://github.com/jonasbn/perl-test-timer.git",
-         "web" : "https://github.com/jonasbn/perl-test-timer"
+         "url" : "https://github.com/jonasbn/testt.git",
+         "web" : "https://github.com/jonasbn/testt"
       }
    },
-   "version" : "0.16",
-   "x_serialization_backend" : "Cpanel::JSON::XS version 3.0115"
+   "version" : "0.17"
 }
 

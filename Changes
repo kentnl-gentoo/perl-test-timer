@@ -1,8 +1,18 @@
 Revision history for Test-Timer
 
+0.17 2016-12-30 Maintenance release, update not required
+
+- Exchanged use of Test::Exception for Test::Fatal
+
+- Exchanged use of: Dist::Zilla::Plugin::GitHub::Meta for Dist::Zilla::Plugin::GithubMeta 
+  to specify a proper homepage attribute
+  
+  Ref: https://metacpan.org/pod/Dist::Zilla::Plugin::GithubMeta 
+
+
 0.16 2016-12-29 Maintenance release, update not required
 
-- Elimination of warnings in test suite
+- Elimination of warnings in test suite, PR from p-alik
 
 
 0.15 2016-12-11 Maintenance release, update not required
