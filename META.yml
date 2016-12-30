@@ -23,10 +23,10 @@ name: Test-Timer
 provides:
   Test::Timer:
     file: lib/Test/Timer.pm
-    version: '0.17'
+    version: '0.18'
   Test::Timer::TimeoutException:
     file: lib/Test/Timer/TimeoutException.pm
-    version: '0.17'
+    version: '0.18'
 requires:
   Benchmark: '0'
   Carp: '0'
@@ -36,6 +36,7 @@ requires:
   Test::Builder::Module: '0'
   perl: '5.006'
 resources:
+  bugtracker: https://github.com/jonasbn/perl-test-timer/issues
   homepage: https://jonasbn.github.io/perl-test-timer/
-  repository: https://github.com/jonasbn/testt.git
-version: '0.17'
+  repository: https://github.com/jonasbn/perl-test-timer.git
+version: '0.18'

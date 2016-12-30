@@ -60,22 +60,25 @@
    "provides" : {
       "Test::Timer" : {
          "file" : "lib/Test/Timer.pm",
-         "version" : "0.17"
+         "version" : "0.18"
       },
       "Test::Timer::TimeoutException" : {
          "file" : "lib/Test/Timer/TimeoutException.pm",
-         "version" : "0.17"
+         "version" : "0.18"
       }
    },
    "release_status" : "stable",
    "resources" : {
+      "bugtracker" : {
+         "web" : "https://github.com/jonasbn/perl-test-timer/issues"
+      },
       "homepage" : "https://jonasbn.github.io/perl-test-timer/",
       "repository" : {
          "type" : "git",
-         "url" : "https://github.com/jonasbn/testt.git",
-         "web" : "https://github.com/jonasbn/testt"
+         "url" : "https://github.com/jonasbn/perl-test-timer.git",
+         "web" : "https://github.com/jonasbn/perl-test-timer"
       }
    },
-   "version" : "0.17"
+   "version" : "0.18"
 }
 
