@@ -15,7 +15,7 @@ use Test::Timer::TimeoutException;
 
 @EXPORT = qw(time_ok time_nok time_atleast time_atmost time_between);
 
-$VERSION = '1.00';
+$VERSION = '2.00';
 
 my $test  = Test::Builder->new;
 our $alarm = 2; #default alarm
@@ -27,12 +27,12 @@ sub time_ok {
 sub time_nok {
     my ( $code, $upperthreshold, $name ) = @_;
 
-    my $ok = _runtest( $code, 0, $upperthreshold, $name );
+    my ($ok, $time) = _runtest( $code, 0, $upperthreshold, $name );
 
     if ($ok == 1) {
         $ok = 0;
         $test->ok( $ok, $name );
-        $test->diag( "Test did not exceed specified threshold of $upperthreshold seconds" );
+        $test->diag( "Test ran $time seconds and did not exceed specified threshold of $upperthreshold seconds" );
     } else {
         $ok = 1;
         $test->ok( $ok, $name );
@@ -44,13 +44,13 @@ sub time_nok {
 sub time_atmost {
     my ( $code, $upperthreshold, $name ) = @_;
 
-    my $ok = _runtest( $code, 0, $upperthreshold, $name );
+    my ($ok, $time) = _runtest( $code, 0, $upperthreshold, $name );
 
     if ($ok == 1) {
         $test->ok( $ok, $name );
     } else {
         $test->ok( $ok, $name );
-        $test->diag( "Test exceeded specified threshold of $upperthreshold seconds" );
+        $test->diag( "Test ran $time seconds and exceeded specified threshold of $upperthreshold seconds" );
     }
 
     return $ok;
@@ -59,11 +59,11 @@ sub time_atmost {
 sub time_atleast {
     my ( $code, $lowerthreshold, $name ) = @_;
 
-    my $ok = _runtest_atleast( $code, $lowerthreshold, undef, $name );
+    my ($ok, $time) = _runtest( $code, $lowerthreshold, undef, $name );
 
     if ($ok == 0) {
         $test->ok( $ok, $name );
-        $test->diag( "Test did not exceed specified threshold of $lowerthreshold seconds" );
+        $test->diag( "Test ran $time seconds and did not exceed specified threshold of $lowerthreshold seconds" );
     } else {
         $test->ok( $ok, $name );
     }
@@ -74,14 +74,14 @@ sub time_atleast {
 sub time_between {
     my ( $code, $lowerthreshold, $upperthreshold, $name ) = @_;
 
-    my $ok = _runtest( $code, $lowerthreshold, $upperthreshold, $name );
+    my ($ok, $time) = _runtest( $code, $lowerthreshold, $upperthreshold, $name );
 
     if ($ok == 1) {
         $test->ok( $ok, $name );
     } else {
         $ok = 0;
         $test->ok( $ok, $name );
-        $test->diag( "Test did not execute within specified interval $lowerthreshold - $upperthreshold seconds" );
+        $test->diag( "Test ran $time seconds and did not execute within specified interval $lowerthreshold - $upperthreshold seconds" );
     }
 
     return $ok;
@@ -91,15 +91,27 @@ sub _runtest {
     my ( $code, $lowerthreshold, $upperthreshold, $name ) = @_;
 
     my $within = 0;
+    my $time = 0;
 
     try {
 
-        my $timestring = _benchmark( $code, $upperthreshold );
-        my $time = _timestring2time($timestring);
+        if ( defined $lowerthreshold and defined $upperthreshold and $name) {
 
-        if ( defined $lowerthreshold && defined $upperthreshold ) {
+            my $timestring = _benchmark( $code, $upperthreshold );
+            $time = _timestring2time($timestring);
 
             if ( $time >= $lowerthreshold && $time <= $upperthreshold ) {
+                $within = 1;
+            } else {
+                $within = 0;
+            }
+
+        } elsif ( defined $lowerthreshold and $name ) {
+
+            my $timestring = _benchmark( $code, $lowerthreshold );
+            $time = _timestring2time($timestring);
+
+            if ( $time > $lowerthreshold ) {
                 $within = 1;
             } else {
                 $within = 0;
@@ -108,6 +120,7 @@ sub _runtest {
         } else {
             croak 'Insufficient number of parameters';
         }
+
     }
     catch Test::Timer::TimeoutException with {
         my $E = shift;
@@ -120,55 +133,20 @@ sub _runtest {
         croak( $E->{-text} );
     };
 
-    return $within;
-}
-
-sub _runtest_atleast {
-    my ( $code, $lowerthreshold, $upperthreshold, $name ) = @_;
-
-    my $exceed = 0;
-
-    try {
-
-        if ( defined $lowerthreshold ) {
-
-            my $timestring = _benchmark( $code, $lowerthreshold );
-            my $time = _timestring2time($timestring);
-
-            if ( $time > $lowerthreshold ) {
-                $exceed = 1;
-            } else {
-                $exceed = 0;
-            }
-
-        } else {
-            croak 'Insufficient number of parameters';
-        }
-    }
-    catch Test::Timer::TimeoutException with {
-        my $E = shift;
-
-        $test->ok( 0, $name );
-        $test->diag( $E->{-text} );
-    }
-    otherwise {
-        my $E = shift;
-        croak( $E->{-text} );
-    };
-
-    return $exceed;
+    return ($within, $time);
 }
 
 sub _benchmark {
     my ( $code, $threshold ) = @_;
 
     my $timestring;
+    my $time = 0;
     my $alarm = $alarm + ($threshold || 0);
 
     try {
         local $SIG{ALRM} = sub {
             throw Test::Timer::TimeoutException(
-                "Execution exceeded threshold of $threshold seconds and timed out" );
+                "Execution ran $time seconds and exceeded threshold of $threshold seconds and timed out" );
         };
 
         alarm( $alarm );
@@ -178,6 +156,7 @@ sub _benchmark {
         my $t1 = new Benchmark;
 
         $timestring = timestr( timediff( $t1, $t0 ) );
+        $time = _timestring2time($timestring);
     }
     otherwise {
         my $E = shift;
@@ -222,7 +201,7 @@ Test::Timer - test module to test/assert response times
 
 =head1 VERSION
 
-The documentation in this module describes version 1.00 of Test::Timer
+The documentation in this module describes version 2.00 of Test::Timer
 
 =head1 SYNOPSIS
 
@@ -351,11 +330,6 @@ interval in order for the test to succeed
 This is a method to handle the result from L<_benchmark|/_benchmark> is initiates the
 benchmark calling benchmark and based on whether it is within the provided
 interval true (1) is returned and if not false (0).
-
-=head2 _runtest_atleast
-
-This is a simpler variant of the method above, it is the author's hope that is
-can be refactored out at some point, due to the similarity with L<_runtest|/_runtest>.
 
 =head2 _benchmark
 
@@ -559,7 +533,7 @@ You can also look for information at:
 
 =over
 
-=item * Nigel Horne, issue #10 suggestion for improvement to diagnostics
+=item * Nigel Horne, issue #10/#12 suggestion for improvement to diagnostics
 
 =item * p-alik, PR #4 eliminating warnings during test
 
