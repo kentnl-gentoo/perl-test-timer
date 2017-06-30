@@ -3,21 +3,21 @@ use strict;
 use Test::Fatal; # like
 use Test::More;
 
-BEGIN { use_ok('Test::Timer'); }
+use Test::Timer;
 
-$Test::Timer::alert = 1;
+$Test::Timer::alarm = 1;
 
 like(
-    exception { Test::Timer::_benchmark( sub { sleep(20); }, 1 ); },
-    qr/Execution ran \d+ seconds and exceeded threshold of \d+ seconds and timed out/,
+    exception { Test::Timer::_benchmark( sub { sleep(20); }, 1, 2 ); },
+    qr/3/,
     'Caught timeout exception'
 );
 
-$Test::Timer::alert = 6;
+$Test::Timer::alarm = 2;
 
 like(
-    exception { Test::Timer::_benchmark( sub { sleep(20); }, 1 ); },
-    qr/Execution ran \d+ seconds and exceeded threshold of \d+ seconds and timed out/,
+    exception { Test::Timer::_benchmark( sub { sleep(20); }, 1, 2 ); },
+    qr/4/,
     'Caught timeout exception'
 );
 
