@@ -15,7 +15,7 @@ use Test::Timer::TimeoutException;
 
 @EXPORT = qw(time_ok time_nok time_atleast time_atmost time_between);
 
-$VERSION = '2.02';
+$VERSION = '2.03';
 
 my $test  = Test::Builder->new;
 my $timeout = 0;
@@ -32,7 +32,7 @@ sub time_nok {
     my ( $code, $upperthreshold, $name ) = @_;
 
     # timing from zero to upper threshold
-    my ($within, $time) = _runtest( $code, 0, $upperthreshold, $name );
+    my ($within, $time) = _runtest( $code, 0, $upperthreshold );
 
     # are we within the specified threshold
     if ($within == 1) {
@@ -56,7 +56,7 @@ sub time_atmost {
     my ( $code, $upperthreshold, $name ) = @_;
 
     # timing from zero to upper threshold
-    my ($within, $time) = _runtest( $code, 0, $upperthreshold, $name );
+    my ($within, $time) = _runtest( $code, 0, $upperthreshold );
 
     # are we within the specified threshold
     if ($within == 1) {
@@ -74,7 +74,7 @@ sub time_atleast {
     my ( $code, $lowerthreshold, $name ) = @_;
 
     # timing from lowerthreshold to nothing
-    my ($above, $time) = _runtest( $code, $lowerthreshold, undef, $name );
+    my ($above, $time) = _runtest( $code, $lowerthreshold, undef );
 
     # are we above the specified threshold
     if ($above == 1) {
@@ -93,21 +93,18 @@ sub time_between {
     my ( $code, $lowerthreshold, $upperthreshold, $name ) = @_;
 
     # timing from lower to upper threshold
-    my ($within, $time) = _runtest( $code, $lowerthreshold, $upperthreshold, $name );
+    my ($within, $time) = _runtest( $code, $lowerthreshold, $upperthreshold );
 
     # are we within the specified threshold
     if ($within == 1) {
         $test->ok( $within, $name ); # yes, we do not fail
-    } elsif ($within == 0) {
+    } else {
         $test->ok( $within, $name ); # no, we fail
         if ($timeout) {
             $test->diag( "Execution ran $timeout seconds and did not execute within specified interval $lowerthreshold - $upperthreshold seconds and timed out");
         } else {
             $test->diag( "Test ran $time seconds and did not execute within specified interval $lowerthreshold - $upperthreshold seconds" );
         }
-    } else {
-        $within = 0;
-        $test->ok( $within, $name ); # no, we fail
     }
 
     return $within;
@@ -116,7 +113,7 @@ sub time_between {
 # helper routine to make initiate timing and make initial interpretation of results
 # test mehtods do the final interpretation
 sub _runtest {
-    my ( $code, $lowerthreshold, $upperthreshold, $name ) = @_;
+    my ( $code, $lowerthreshold, $upperthreshold ) = @_;
 
     my $ok = 0;
     my $time = 0;
@@ -124,9 +121,9 @@ sub _runtest {
     try {
 
         # we have both a lower and upper threshold (time_between, time_most, time_ok)
-        if ( defined $lowerthreshold and defined $upperthreshold and $name) {
+        if ( defined $lowerthreshold and defined $upperthreshold ) {
 
-            $time = _benchmark( $code, $lowerthreshold, $upperthreshold );
+            $time = _benchmark( $code, $upperthreshold );
 
             if ( $time >= $lowerthreshold and $time <= $upperthreshold ) {
                 $ok = 1;
@@ -135,18 +132,15 @@ sub _runtest {
             }
 
         # we just have a lower threshold (time_atleast)
-        } elsif ( defined $lowerthreshold and $name ) {
+        } elsif ( defined $lowerthreshold ) {
 
-            $time = _benchmark( $code, $lowerthreshold, $upperthreshold );
+            $time = _benchmark( $code );
 
             if ( $time >= $lowerthreshold ) {
                 $ok = 1;
             } else {
                 $ok = 0;
             }
-
-        } else {
-            croak 'Insufficient number of parameters';
         }
     }
     # catching a timeout so we do not run forever
@@ -156,10 +150,6 @@ sub _runtest {
         $timeout = $E->{-text};
 
         return (undef, $time); # we return undef as result
-    }
-    otherwise {
-        my $E = shift;
-        croak( $E->{-text} );
     };
 
     return ($ok, $time);
@@ -167,7 +157,7 @@ sub _runtest {
 
 # actual timing using benchmark
 sub _benchmark {
-    my ( $code, $lowerthreshold, $upperthreshold ) = @_;
+    my ( $code, $threshold ) = @_;
 
     my $time = 0;
 
@@ -177,8 +167,8 @@ sub _benchmark {
     # We only define an alarm if we have an upper threshold
     # alarm is based on upper threshold + default alarm
     # default alarm can be extended, see the docs
-    if (defined $upperthreshold) {
-        $local_alarm = $upperthreshold + $alarm;
+    if (defined $threshold) {
+        $local_alarm = $threshold + $alarm;
     }
 
     # setting first benchmark
@@ -237,6 +227,7 @@ __END__
 [![CPAN version](https://badge.fury.io/pl/Test-Timer.svg)](http://badge.fury.io/pl/Test-Timer)
 [![Build Status](https://travis-ci.org/jonasbn/perl-test-timer.svg?branch=master)](https://travis-ci.org/jonasbn/perl-test-timer)
 [![Coverage Status](https://coveralls.io/repos/github/jonasbn/perl-test-timer/badge.svg?branch=master)](https://coveralls.io/github/jonasbn/perl-test-timer?branch=master)
+[![License: Artistic-2.0](https://img.shields.io/badge/License-Artistic%202.0-0298c3.svg)](https://opensource.org/licenses/Artistic-2.0)
 
 <!-- MarkdownTOC autoanchor=false -->
 
@@ -251,7 +242,7 @@ Test::Timer - test module to test/assert response times
 
 =head1 VERSION
 
-The documentation describes version 2.02 of Test::Timer
+The documentation describes version 2.03 of Test::Timer
 
 =head1 FEATURES
 
