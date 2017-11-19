@@ -38,9 +38,9 @@ my %WriteMakefileArgs = (
     "Test::More" => 0,
     "Test::Pod" => "1.41",
     "Test::Pod::Coverage" => "1.08",
-    "Test::Tester" => 0
+    "Test::Tester" => "1.302111"
   },
-  "VERSION" => "2.06",
+  "VERSION" => "2.07",
   "test" => {
     "TESTS" => "t/*.t"
   }
@@ -64,7 +64,7 @@ my %FallbackPrereqs = (
   "Test::More" => 0,
   "Test::Pod" => "1.41",
   "Test::Pod::Coverage" => "1.08",
-  "Test::Tester" => 0
+  "Test::Tester" => "1.302111"
 );
 
 
