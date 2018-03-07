@@ -36,12 +36,8 @@ my %module_build_args = (
     "File::Spec" => 0,
     "IO::Handle" => 0,
     "IPC::Open3" => 0,
-    "Pod::Coverage::TrustPod" => 0,
     "Test::Fatal" => 0,
-    "Test::Kwalitee" => "1.21",
     "Test::More" => 0,
-    "Test::Pod" => "1.41",
-    "Test::Pod::Coverage" => "1.08",
     "Test::Tester" => 0
   }
 );
@@ -52,12 +48,8 @@ my %fallback_build_requires = (
   "IO::Handle" => 0,
   "IPC::Open3" => 0,
   "Module::Build" => "0.30",
-  "Pod::Coverage::TrustPod" => 0,
   "Test::Fatal" => 0,
-  "Test::Kwalitee" => "1.21",
   "Test::More" => 0,
-  "Test::Pod" => "1.41",
-  "Test::Pod::Coverage" => "1.08",
   "Test::Tester" => 0
 );
 
